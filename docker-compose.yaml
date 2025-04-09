@@ -1,0 +1,111 @@
+version: "3.8"
+
+services:
+  ha:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net14:
+        ipv4_address: 10.0.14.3
+
+  hb:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net34:
+        ipv4_address: 10.0.34.3
+
+  r1:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net14:
+        ipv4_address: 10.0.14.4
+      net12:
+        ipv4_address: 10.0.12.1
+      net41:
+        ipv4_address: 10.0.41.1
+
+  r2:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net12:
+        ipv4_address: 10.0.12.2
+      net23:
+        ipv4_address: 10.0.23.2
+
+  r3:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net23:
+        ipv4_address: 10.0.23.3
+      net34:
+        ipv4_address: 10.0.34.4
+      net43:
+        ipv4_address: 10.0.43.3
+
+  r4:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net41:
+        ipv4_address: 10.0.41.4
+      net43:
+        ipv4_address: 10.0.43.4
+
+networks:
+  net14:
+    ipam:
+      config:
+        - subnet: 10.0.14.0/24
+
+  net34:
+    ipam:
+      config:
+        - subnet: 10.0.34.0/24
+
+  net12:
+    ipam:
+      config:
+        - subnet: 10.0.12.0/24
+
+  net23:
+    ipam:
+      config:
+        - subnet: 10.0.23.0/24
+
+  net41:
+    ipam:
+      config:
+        - subnet: 10.0.41.0/24
+
+  net43:
+    ipam:
+      config:
+        - subnet: 10.0.43.0/24
