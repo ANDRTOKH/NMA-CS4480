@@ -20,8 +20,8 @@ services:
       - ALL
     privileged: true    
     networks:
-      net34:
-        ipv4_address: 10.0.34.3
+      net15:
+        ipv4_address: 10.0.15.3
 
   r1:
     build: .
@@ -33,10 +33,10 @@ services:
     networks:
       net14:
         ipv4_address: 10.0.14.4
-      net12:
-        ipv4_address: 10.0.12.1
-      net41:
-        ipv4_address: 10.0.41.1
+      net16:
+        ipv4_address: 10.0.16.1
+      net18:
+        ipv4_address: 10.0.18.1
 
   r2:
     build: .
@@ -46,10 +46,10 @@ services:
       - ALL
     privileged: true
     networks:
-      net12:
-        ipv4_address: 10.0.12.2
-      net23:
-        ipv4_address: 10.0.23.2
+      net16:
+        ipv4_address: 10.0.16.2
+      net17:
+        ipv4_address: 10.0.17.2
 
   r3:
     build: .
@@ -59,12 +59,12 @@ services:
       - ALL
     privileged: true
     networks:
-      net23:
-        ipv4_address: 10.0.23.3
-      net34:
-        ipv4_address: 10.0.34.4
-      net43:
-        ipv4_address: 10.0.43.3
+      net17:
+        ipv4_address: 10.0.17.3
+      net15:
+        ipv4_address: 10.0.15.4
+      net19:
+        ipv4_address: 10.0.19.3
 
   r4:
     build: .
@@ -74,10 +74,10 @@ services:
       - ALL
     privileged: true
     networks:
-      net41:
-        ipv4_address: 10.0.41.4
-      net43:
-        ipv4_address: 10.0.43.4
+      net18:
+        ipv4_address: 10.0.18.4
+      net19:
+        ipv4_address: 10.0.19.4
 
 networks:
   net14:
@@ -85,27 +85,27 @@ networks:
       config:
         - subnet: 10.0.14.0/24
 
-  net34:
+  net15:
     ipam:
       config:
-        - subnet: 10.0.34.0/24
+        - subnet: 10.0.15.0/24
 
-  net12:
+  net16:
     ipam:
       config:
-        - subnet: 10.0.12.0/24
+        - subnet: 10.0.16.0/24
 
-  net23:
+  net17:
     ipam:
       config:
-        - subnet: 10.0.23.0/24
+        - subnet: 10.0.17.0/24
 
-  net41:
+  net18:
     ipam:
       config:
-        - subnet: 10.0.41.0/24
+        - subnet: 10.0.18.0/24
 
-  net43:
+  net19:
     ipam:
       config:
-        - subnet: 10.0.43.0/24
+        - subnet: 10.0.19.0/24
