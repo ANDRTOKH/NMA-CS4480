@@ -7,8 +7,8 @@ services:
       - ALL
     privileged: true    
     networks:
-      net114:
-        ipv4_address: 10.0.114.3
+      net10:
+        ipv4_address: 10.0.10.3
 
   hb:
     build: .
@@ -18,8 +18,8 @@ services:
       - ALL
     privileged: true    
     networks:
-      net134:
-        ipv4_address: 10.0.134.3
+      net11:
+        ipv4_address: 10.0.11.3
 
   r1:
     build: .
@@ -29,12 +29,12 @@ services:
       - ALL
     privileged: true
     networks:
-      net114:
-        ipv4_address: 10.0.114.4
-      net112:
-        ipv4_address: 10.0.112.1
-      net141:
-        ipv4_address: 10.0.141.1
+      net10:
+        ipv4_address: 10.0.10.4
+      net12:
+        ipv4_address: 10.0.12.1
+      net13:
+        ipv4_address: 10.0.13.1
 
   r2:
     build: .
@@ -44,10 +44,10 @@ services:
       - ALL
     privileged: true
     networks:
-      net112:
-        ipv4_address: 10.0.112.2
-      net123:
-        ipv4_address: 10.0.123.2
+      net12:
+        ipv4_address: 10.0.12.2
+      net14:
+        ipv4_address: 10.0.14.2
 
   r3:
     build: .
@@ -57,12 +57,12 @@ services:
       - ALL
     privileged: true
     networks:
-      net123:
-        ipv4_address: 10.0.123.3
-      net134:
-        ipv4_address: 10.0.134.4
-      net143:
-        ipv4_address: 10.0.143.3
+      net14:
+        ipv4_address: 10.0.14.3
+      net11:
+        ipv4_address: 10.0.11.4
+      net15:
+        ipv4_address: 10.0.15.3
 
   r4:
     build: .
@@ -72,38 +72,38 @@ services:
       - ALL
     privileged: true
     networks:
-      net141:
-        ipv4_address: 10.0.141.4
-      net143:
-        ipv4_address: 10.0.143.4
+      net13:
+        ipv4_address: 10.0.13.4
+      net15:
+        ipv4_address: 10.0.15.4
 
 networks:
-  net114:
+  net10:
     ipam:
       config:
-        - subnet: 10.0.114.0/24
+        - subnet: 10.0.10.0/24
 
-  net134:
+  net11:
     ipam:
       config:
-        - subnet: 10.0.134.0/24
+        - subnet: 10.0.11.0/24
 
-  net112:
+  net12:
     ipam:
       config:
-        - subnet: 10.0.112.0/24
+        - subnet: 10.0.12.0/24
 
-  net123:
+  net13:
     ipam:
       config:
-        - subnet: 10.0.123.0/24
+        - subnet: 10.0.13.0/24
 
-  net141:
+  net14:
     ipam:
       config:
-        - subnet: 10.0.141.0/24
+        - subnet: 10.0.14.0/24
 
-  net143:
+  net15:
     ipam:
       config:
-        - subnet: 10.0.143.0/24
+        - subnet: 10.0.15.0/24
