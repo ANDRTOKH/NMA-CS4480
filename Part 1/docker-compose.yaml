@@ -1,25 +1,4 @@
 services:
-  ha:
-    build: .
-    stdin_open: true
-    tty: true
-    cap_add:
-      - ALL
-    privileged: true    
-    networks:
-      net_ha_r1:
-        ipv4_address: 172.28.10.3
-
-  hb:
-    build: .
-    stdin_open: true
-    tty: true
-    cap_add:
-      - ALL
-    privileged: true    
-    networks:
-      net_hb_r3:
-        ipv4_address: 172.28.11.3
 
   r1:
     build: .
@@ -76,6 +55,28 @@ services:
         ipv4_address: 172.28.13.4
       net_r3_r4:
         ipv4_address: 172.28.15.4
+
+   ha:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net_ha_r1:
+        ipv4_address: 172.28.10.3
+
+  hb:
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net_hb_r3:
+        ipv4_address: 172.28.11.3
 
 networks:
   net_ha_r1:
