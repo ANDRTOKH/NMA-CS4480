@@ -80,30 +80,36 @@ services:
 networks:
   net_ha_r1:
     ipam:
+      driver: default
       config:
         - subnet: 172.28.10.0/24
 
   net_hb_r3:
     ipam:
+      driver: default
       config:
         - subnet: 172.28.11.0/24
 
   net_r1_r2:
-    ipam:
+    ipam: 
+      driver: default
       config:
         - subnet: 172.28.12.0/24
 
   net_r1_r4:
     ipam:
+      driver: default
       config:
         - subnet: 172.28.13.0/24
 
   net_r2_r3:
     ipam:
+      driver: default
       config:
         - subnet: 172.28.14.0/24
 
   net_r3_r4:
     ipam:
+      driver: default
       config:
         - subnet: 172.28.15.0/24
