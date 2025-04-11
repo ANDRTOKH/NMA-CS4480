@@ -1,5 +1,4 @@
 services:
-
   r1:
     build: .
     stdin_open: true
