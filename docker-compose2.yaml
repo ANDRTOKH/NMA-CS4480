@@ -1,0 +1,53 @@
+services:
+  r1:
+    build:
+      context: .
+      dockerfile: Dockerfile-r1
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net14:
+        ipv4_address: 10.0.14.4
+      net15:
+        ipv4_address: 10.0.15.4
+
+  ha:
+    build:
+      context: .
+      dockerfile: Dockerfile-h
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net14:
+        ipv4_address: 10.0.14.3
+
+  hb:
+    build:
+      context: .
+      dockerfile: Dockerfile-h
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net15:
+        ipv4_address: 10.0.15.3
+
+networks:
+  net14:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.14.0/24
+  net15:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.15.0/24
