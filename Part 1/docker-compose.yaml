@@ -55,7 +55,7 @@ services:
       net13:
         ipv4_address: 10.0.13.3
 
-   ha:
+  ha:
     build: .
     stdin_open: true
     tty: true
@@ -91,7 +91,7 @@ networks:
         - subnet: 10.0.11.0/24
 
   net12:
-    ipam: 
+    ipam:
       driver: default
       config:
         - subnet: 10.0.12.0/24
