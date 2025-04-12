@@ -18,4 +18,5 @@ apt update && apt -y install frr frr-pythontools
 sed -i 's/ospfd=no/ospfd=yes/' /etc/frr/daemons
 
 # Restart FRR to apply changes
+echo "Restarting FRR..."
 service frr restart
