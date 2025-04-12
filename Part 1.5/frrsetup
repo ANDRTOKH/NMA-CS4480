@@ -7,3 +7,26 @@ FRRVER="frr-stable"
 echo deb ’[signed-by=/usr/share/keyrings/frrouting.gpg]’ https://deb.frrouting.org/frr \
 $(lsb_release -s -c) $FRRVER | tee -a /etc/apt/sources.list.d/frr.list
 apt update && apt -y install frr frr-pythontools
+
+
+#!/bin/bash
+
+# Install prerequisites
+apt -y update
+apt -y install curl gnupg 
+
+# Add FRR repository and install FRR
+curl -s https://deb.frrouting.org/frr/keys.gpg | \
+  tee /usr/share/keyrings/frrouting.gpg > /dev/null
+
+curl -s https://deb.frrouting.org/frr/keys.gpg | tee /usr/share/keyrings/frrouting.gpg > /dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/frrouting.gpg] https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable" \
+  | tee /etc/apt/sources.list.d/frr.list
+apt update && apt -y install frr frr-pythontools
+
+# Enable OSPF
+sed -i 's/ospfd=no/ospfd=yes/' /etc/frr/daemons
+
+# Restart FRR to apply changes
+service frr restart
