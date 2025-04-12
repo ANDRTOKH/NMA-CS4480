@@ -1,3 +1,4 @@
 #!/usr/bin/bash //Maybe
 
+echo "Restarting FRR..."
 service frr restart
