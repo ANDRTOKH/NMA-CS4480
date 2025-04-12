@@ -1,1 +1,3 @@
+#!/usr/bin/bash //Maybe
+
 service frr restart
