@@ -11,7 +11,7 @@ RUN pip3 install pexpect --break-system-packages
 COPY ./frrsetup /root 
 RUN /root/frrsetup 
 COPY ./daemons /etc/frr/daemons 
-COPY ./r2_frr.conf /etc/frr/frr/conf
+COPY ./r2_frr.conf /etc/frr/frr.conf
 COPY ./frrrestart /root 
 COPY ./setospf.py /root 
 
