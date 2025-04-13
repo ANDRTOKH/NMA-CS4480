@@ -13,4 +13,5 @@ COPY ./daemons /etc/frr/daemons
 COPY ./r4_frr.conf /etc/frr/frr.conf
 COPY ./frrrestart /root 
 
-CMD ["bash"]
+# Start FRR and open bash
+CMD /etc/init.d/frr start && bash
