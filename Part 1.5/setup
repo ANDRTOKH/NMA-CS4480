@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "=== STEP 1: Building and Starting the Network ==="
+./dockersetup
+sudo docker compose up -d
+echo "Waiting for containers to start..."
+sleep 5
+
+echo "=== STEP 4: Configuring Host Routes ==="
+docker exec -it part15-ha-1 ip route del default
+docker exec -it part15-ha-1 ip route add default via 10.0.14.4
+docker exec -it part15-hb-1 ip route del default
+docker exec -it part15-hb-1 ip route add default via 10.0.15.4
+echo "Waiting for routes to be applied..."
+sleep 2
+
+echo ""
+echo "Setup complete! Network is now operational."
