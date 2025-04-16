@@ -2,18 +2,6 @@ import subprocess
 import argparse
 import sys
 
-# Run setup scripts before anything else
-def run_setup():
-    try:
-        print("[*] Running setup scripts...")
-        subprocess.run(["chmod", "+x", "dockersetup"], check=True)
-        subprocess.run(["chmod", "+x", "setup"], check=True)
-        subprocess.run(["./setup"], check=True)
-        print("[+] Setup completed successfully.")
-    except subprocess.CalledProcessError as e:
-        print(f"[ERR] Setup failed: {e}")
-        sys.exit(1)
-
 # Set OSPF cost on a specific interface of a router container
 def set_ospf_cost(container, interface, cost):
     try:
@@ -44,13 +32,13 @@ def set_south_path():
     print("[*] Switching to SOUTH path (via R4)...")
     set_ospf_cost("r1", "eth0", 100)
     set_ospf_cost("r1", "eth1", 10)
-    set_ospf_cost("r3", "eth1", 100)
+    set_ospf_cost("r3", "eth0", 100)
     set_ospf_cost("r3", "eth1", 10)
     print("[+] Path switched to SOUTH")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Dynamic OSPF Traffic Rerouter with automatic setup execution"
+        description="Dynamic OSPF Traffic Rerouter with pre-configured setup"
     )
     parser.add_argument(
         "path",
@@ -60,8 +48,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    run_setup()
-
+    # Now we skip running the setup again here, as it's handled in the bash script.
+    
     if args.path == "north":
         set_north_path()
     elif args.path == "south":
