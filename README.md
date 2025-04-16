@@ -6,8 +6,8 @@
 
 <b> Use the orchestrator: </b>
 - To switch to the North path (via R2):
-    ospfroute north
+    <t> ospfroute north </t> 
 - To switch to the South path (via R4):
-  ospfroute south
-- To get help
-  ospfroute -h
+  <t> ospfroute south </t> 
+- To Show help message
+  <t> ospfroute -h </t> 
