@@ -1,9 +1,13 @@
 # Network Managment Automation (PA3)
 
-<b> After clone, run: </b>
+<b> Run the setup script: </b>
 - chmod +x setup
 - ./setup
 
-<b> Switch OSPF paths: </b>
-- ospfroute north
-- ospfroute south 
+<b> Use the orchestrator: </b>
+- To switch to the North path (via R2):
+    ospfroute north
+- To switch to the South path (via R4):
+  ospfroute south
+- To get help
+  ospfroute -h
