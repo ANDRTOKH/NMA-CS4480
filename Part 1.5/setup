@@ -8,7 +8,6 @@ echo "Waiting for containers to start..."
 sleep 5
 
 echo "=== STEP 2: Configuring Host Routes ==="
-
 # Automatically detect the container names using the "part15-ha" and "part15-hb" prefix
 ha_container=$(sudo docker ps --filter "name=part15-ha" --format '{{.Names}}')
 hb_container=$(sudo docker ps --filter "name=part15-hb" --format '{{.Names}}')
