@@ -1,13 +1,13 @@
-# Network Managment Automation (PA3)
+# Network Management Automation (PA3)
 
-<b> Run the setup script: </b>
-- chmod +x setup
-- ./setup
+**Run the setup script:**
+- `chmod +x setup`
+- `./setup`
 
-<b> Use the orchestrator: </b>
+**Use the orchestrator:**
 - To switch to the North path (via R2):
-    <t> ospfroute north </t> 
+  - `ospfroute north`
 - To switch to the South path (via R4):
-  <t> ospfroute south </t> 
-- To Show help message
-  <t> ospfroute -h </t> 
+  - `ospfroute south`
+- To show the help message:
+  - `ospfroute -h`
