@@ -7,7 +7,15 @@ sudo docker compose up -d
 echo "Waiting for containers to start..."
 sleep 5
 
-echo "=== STEP 2: Adding Bash Alias (if missing) ==="
+echo "=== STEP 2: Configuring Host Routes ==="
+docker exec -it part15-ha-1 ip route del default
+docker exec -it part15-ha-1 ip route add default via 10.0.14.4
+docker exec -it part15-hb-1 ip route del default
+docker exec -it part15-hb-1 ip route add default via 10.0.15.4
+echo "Waiting for routes to be applied..."
+sleep 2
+
+echo "=== STEP 3: Adding Bash Alias (if missing) ==="
 ALIAS_CMD="alias ospfroute='python3 Andrei_Tokhtuev_u1355939.py'"
 BASHRC="$HOME/.bashrc"
 
@@ -19,14 +27,6 @@ if ! grep -Fxq "$ALIAS_CMD" "$BASHRC"; then
 else
     echo "[*] Alias 'ospfroute' already exists in $BASHRC"
 fi
-
-echo "=== STEP 3: Configuring Host Routes ==="
-docker exec -it part15-ha-1 ip route del default
-docker exec -it part15-ha-1 ip route add default via 10.0.14.4
-docker exec -it part15-hb-1 ip route del default
-docker exec -it part15-hb-1 ip route add default via 10.0.15.4
-echo "Waiting for routes to be applied..."
-sleep 2
 
 echo ""
 echo "Setup complete! Network is now operational."
