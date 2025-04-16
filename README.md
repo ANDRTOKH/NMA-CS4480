@@ -1,5 +1,6 @@
-## After clone, run:
+# Network Managment Automation (PA3)
 
+## After clone, run:
 - ./setup 
 
 ## Switch OSPF paths:
