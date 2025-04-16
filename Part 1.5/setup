@@ -8,10 +8,10 @@ echo "Waiting for containers to start..."
 sleep 5
 
 echo "=== STEP 2: Configuring Host Routes ==="
-docker exec -it part15-ha-1 ip route del default
-docker exec -it part15-ha-1 ip route add default via 10.0.14.4
-docker exec -it part15-hb-1 ip route del default
-docker exec -it part15-hb-1 ip route add default via 10.0.15.4
+sudo docker exec -it part15-ha-1 ip route del default
+sudo docker exec -it part15-ha-1 ip route add default via 10.0.14.4
+sudo docker exec -it part15-hb-1 ip route del default
+sudo docker exec -it part15-hb-1 ip route add default via 10.0.15.4
 echo "Waiting for routes to be applied..."
 sleep 2
 
