@@ -8,10 +8,42 @@ echo "Waiting for containers to start..."
 sleep 5
 
 echo "=== STEP 2: Configuring Host Routes ==="
-sudo docker exec -it part15-ha-1 ip route del default
-sudo docker exec -it part15-ha-1 ip route add default via 10.0.14.4
-sudo docker exec -it part15-hb-1 ip route del default
-sudo docker exec -it part15-hb-1 ip route add default via 10.0.15.4
+
+# Automatically detect the container names using the "part15-ha" and "part15-hb" prefix
+ha_container=$(sudo docker ps --filter "name=part15-ha" --format '{{.Names}}')
+hb_container=$(sudo docker ps --filter "name=part15-hb" --format '{{.Names}}')
+
+# Check if the containers exist
+if [[ -z "$ha_container" ]]; then
+    echo "[ERR] Could not find container for part15-ha"
+    exit 1
+fi
+
+if [[ -z "$hb_container" ]]; then
+    echo "[ERR] Could not find container for part15-hb"
+    exit 1
+fi
+
+# Wait until ha and hb containers are healthy
+for container in "$ha_container" "$hb_container"; do
+    echo "Waiting for container $container to be ready..."
+    for i in {1..10}; do
+        if sudo docker exec "$container" true 2>/dev/null; then
+            echo "$container is ready."
+            break
+        else
+            sleep 1
+        fi
+    done
+done
+
+# Configure routes
+sudo docker exec "$ha_container" ip route del default || echo "[*] No default route to delete on $ha_container"
+sudo docker exec "$ha_container" ip route add default via 10.0.14.4
+
+sudo docker exec "$hb_container" ip route del default || echo "[*] No default route to delete on $hb_container"
+sudo docker exec "$hb_container" ip route add default via 10.0.15.4
+
 echo "Waiting for routes to be applied..."
 sleep 2
 
