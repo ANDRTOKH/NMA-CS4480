@@ -1,6 +1,5 @@
 import subprocess
 import argparse
-import sys
 
 # Set OSPF cost on a specific interface of a router container
 def set_ospf_cost(container, interface, cost):
@@ -18,27 +17,29 @@ def set_ospf_cost(container, interface, cost):
     except subprocess.CalledProcessError as e:
         print(f"[ERR] Failed to set cost on {container}:{interface}: {e}")
 
-# Switch to north path: r1→r2→r3
+# NORTH path: r1 → r2 → r3
 def set_north_path():
     print("[*] Switching to NORTH path (via R2)...")
-    set_ospf_cost("r1", "eth0", 10)
-    set_ospf_cost("r1", "eth1", 100)
-    set_ospf_cost("r3", "eth0", 10)
-    set_ospf_cost("r3", "eth1", 100)
+    set_ospf_cost("r1", "eth0", 10)   # r1 → r2
+    set_ospf_cost("r1", "eth1", 100)  # r1 → r4
+
+    set_ospf_cost("r3", "eth0", 10)   # r3 ← r2
+    set_ospf_cost("r3", "eth1", 100)  # r3 ← r4
     print("[+] Path switched to NORTH")
 
-# Switch to south path: r1→r4→r3
+# SOUTH path: r1 → r4 → r3
 def set_south_path():
     print("[*] Switching to SOUTH path (via R4)...")
-    set_ospf_cost("r1", "eth0", 100)
-    set_ospf_cost("r1", "eth1", 10)
-    set_ospf_cost("r3", "eth0", 100)
-    set_ospf_cost("r3", "eth1", 10)
+    set_ospf_cost("r1", "eth0", 100)  # r1 → r2
+    set_ospf_cost("r1", "eth1", 10)   # r1 → r4
+
+    set_ospf_cost("r3", "eth0", 100)  # r3 ← r2
+    set_ospf_cost("r3", "eth1", 10)   # r3 ← r4
     print("[+] Path switched to SOUTH")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Dynamic OSPF Traffic Rerouter with pre-configured setup"
+        description="Dynamic OSPF Traffic Rerouter"
     )
     parser.add_argument(
         "path",
@@ -48,8 +49,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # Now we skip running the setup again here, as it's handled in the bash script.
-    
     if args.path == "north":
         set_north_path()
     elif args.path == "south":
