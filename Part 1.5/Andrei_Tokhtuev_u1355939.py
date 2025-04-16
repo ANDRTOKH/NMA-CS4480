@@ -16,20 +16,20 @@ def set_ospf_cost(container, interface, cost):
 # North path: R1 -> R2 -> R3
 def set_north_path():
     print("Switching to NORTH path (via R2)...")
-    set_ospf_cost("r1", "eth1", 10)  # R1 -> R2
-    set_ospf_cost("r1", "eth2", 100) # R1 -> R4 (make less attractive)
+    set_ospf_cost("r1", "eth0", 10)  # R1 -> R2
+    set_ospf_cost("r1", "eth1", 100) # R1 -> R4 (make less attractive)
 
-    set_ospf_cost("r3", "eth1", 10)  # R3 -> R2
-    set_ospf_cost("r3", "eth2", 100) # R3 -> R4
+    set_ospf_cost("r3", "eth0", 10)  # R3 -> R2
+    set_ospf_cost("r3", "eth1", 100) # R3 -> R4
 
 # South path: R1 -> R4 -> R3
 def set_south_path():
     print("Switching to SOUTH path (via R4)...")
-    set_ospf_cost("r1", "eth1", 100) # R1 -> R2 (make less attractive)
-    set_ospf_cost("r1", "eth2", 10)  # R1 -> R4
+    set_ospf_cost("r1", "eth0", 100) # R1 -> R2 (make less attractive)
+    set_ospf_cost("r1", "eth1", 10)  # R1 -> R4
 
-    set_ospf_cost("r3", "eth1", 100) # R3 -> R2
-    set_ospf_cost("r3", "eth2", 10)  # R3 -> R4
+    set_ospf_cost("r3", "eth0", 100) # R3 -> R2
+    set_ospf_cost("r3", "eth1", 10)  # R3 -> R4
 
 # Argument parsing
 if __name__ == "__main__":
