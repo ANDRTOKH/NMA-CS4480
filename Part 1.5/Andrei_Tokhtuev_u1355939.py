@@ -19,28 +19,28 @@ def set_ospf_cost(container, interface, cost):
 
 def set_north_path():
     print("[*] Switching to NORTH path (via R2)...")
-    set_ospf_cost("r1", "eth0", 10)   
-    set_ospf_cost("r2", "eth0", 10)  
-    set_ospf_cost("r2", "eth1", 10)   
-    set_ospf_cost("r3", "eth0", 10)   
+    set_ospf_cost("part15-r1-1", "eth0", 10)   
+    set_ospf_cost("part15-r2-1", "eth0", 10)  
+    set_ospf_cost("part15-r2-1", "eth1", 10)   
+    set_ospf_cost("part15-r3-1", "eth0", 10)   
     
-    set_ospf_cost("r1", "eth1", 100) 
-    set_ospf_cost("r3", "eth1", 100)  
-    set_ospf_cost("r4", "eth0", 100)  
-    set_ospf_cost("r4", "eth1", 100)  
+    set_ospf_cost("part15-r1-1", "eth1", 100) 
+    set_ospf_cost("part15-r3-1", "eth1", 100)  
+    set_ospf_cost("part15-r4-1", "eth0", 100)  
+    set_ospf_cost("part15-r4-1", "eth1", 100)  
     print("[+] Path switched to NORTH")
 
 def set_south_path():
     print("[*] Switching to SOUTH path (via R4)...")
-    set_ospf_cost("r1", "eth0", 100)  
-    set_ospf_cost("r2", "eth0", 100) 
-    set_ospf_cost("r2", "eth1", 100)  
-    set_ospf_cost("r3", "eth0", 100)  
+    set_ospf_cost("part15-r1-1", "eth0", 100)  
+    set_ospf_cost("part15-r2-1", "eth0", 100) 
+    set_ospf_cost("part15-r2-1", "eth1", 100)  
+    set_ospf_cost("part15-r3-1", "eth0", 100)  
     
-    set_ospf_cost("r1", "eth1", 10)   
-    set_ospf_cost("r3", "eth1", 10)   
-    set_ospf_cost("r4", "eth0", 10)   
-    set_ospf_cost("r4", "eth1", 10)   
+    set_ospf_cost("part15-r1-1", "eth1", 10)   
+    set_ospf_cost("part15-r3-1", "eth1", 10)   
+    set_ospf_cost("part15-r4-1", "eth0", 10)   
+    set_ospf_cost("part15-r4-1", "eth1", 10)   
     print("[+] Path switched to SOUTH")
 
 def show_routes():
